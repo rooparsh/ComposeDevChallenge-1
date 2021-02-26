@@ -1,2 +1,3 @@
 rootProject.name = "AndroidDevChallenge"
 include ':app'
+include ':data'
