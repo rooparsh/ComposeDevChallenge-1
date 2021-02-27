@@ -1,6 +1,5 @@
-package com.example.androiddevchallenge.ui.view
+package com.example.androiddevchallenge.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,17 +14,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.rooparsh.data.model.Puppy
+import com.rooparsh.data.network.model.Breed
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun PuppyItem(puppy: Puppy, modifier: Modifier = Modifier) {
+fun HomeListItem(breed: Breed, modifier: Modifier = Modifier) {
     Card(modifier, shape = RoundedCornerShape(16.dp)) {
         Box {
-            Image(
-                painter = painterResource(id = puppy.image),
-                contentDescription = puppy.name,
+            CoilImage(
+                data = breed.image?.url ?: "",
+                contentDescription = breed.name,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(),
@@ -42,11 +41,13 @@ fun PuppyItem(puppy: Puppy, modifier: Modifier = Modifier) {
                         )
                     )
                     .fillMaxWidth()
+                    .fillMaxHeight()
                     .padding(16.dp)
             ) {
                 Text(
-                    text = puppy.name, style = MaterialTheme.typography.h5, color = MaterialTheme
-                        .colors.surface
+                    text = breed.name ?: "",
+                    style = MaterialTheme.typography.h5,
+                    color = MaterialTheme.colors.surface
                 )
             }
         }

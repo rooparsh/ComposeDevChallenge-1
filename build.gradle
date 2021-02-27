@@ -18,6 +18,16 @@ buildscript {
     ext.kotlin_version = '1.4.30'
     ext.compose_version = '1.0.0-beta01'
     ext.coroutines_version = '1.4.2'
+    ext.retrofitVersion = '2.9.0'
+    ext.okHttpVersion = '4.9.0'
+
+    ext.hiltAndroidVersion = "2.32-alpha"
+    ext.hiltViewModelVersion = "1.0.0-alpha03"
+
+    ext.lifecycleVersion = "2.2.0"
+    ext.liveDataKtx = '2.3.0'
+
+    ext.paging = '1.0.0-alpha08'
 
     repositories {
         google()
@@ -27,6 +37,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltAndroidVersion"
     }
 }
 
