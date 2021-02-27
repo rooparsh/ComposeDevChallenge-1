@@ -15,17 +15,13 @@
  */
 package com.example.androiddevchallenge.ui
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -66,12 +62,15 @@ class MainActivity : AppCompatActivity() {
         NavHost(navController = navController, startDestination = Navigation.Home.title) {
             composable(Navigation.Home.title) {
                 HomeScreen(
+                    query = viewModel.query.value,
                     items = items,
                     listState = listState,
-                    listener = {
+                    onItemClickListener = {
                         selectedBreed = it
                         navController.navigate(Navigation.Detail.title)
-                    })
+                    },
+                    onQueryChanged = { viewModel.onQueryChanged(it) }
+                )
             }
 
             composable(Navigation.Detail.title) {

@@ -15,7 +15,11 @@ import androidx.compose.ui.unit.dp
 fun Detail(heading: String, detail: String, modifier: Modifier = Modifier) {
     Column(modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(heading, style = MaterialTheme.typography.h6, color = MaterialTheme.colors.secondary)
-        Text(detail, style = MaterialTheme.typography.subtitle1)
+        Text(
+            detail,
+            style = MaterialTheme.typography.subtitle1,
+            color = MaterialTheme.colors.secondaryVariant
+        )
     }
 }
 
@@ -27,6 +31,10 @@ fun Section(heading: String, detail: String, modifier: Modifier = Modifier) {
             .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
         Text(heading, style = MaterialTheme.typography.h5, color = MaterialTheme.colors.secondary)
-        Text(detail, style = MaterialTheme.typography.subtitle1)
+        Text(
+            detail,
+            style = MaterialTheme.typography.subtitle1,
+            color = MaterialTheme.colors.secondaryVariant
+        )
     }
 }

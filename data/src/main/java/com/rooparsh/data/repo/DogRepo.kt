@@ -12,24 +12,18 @@ import kotlinx.coroutines.flow.flowOn
 
 interface DogRepo {
 
-    fun getDogBreed(page: Int = 0): Flow<ViewState<List<Breed>>>
+
+    fun filterData(query : String)
 
     suspend fun getDogBreedFromServer(page: Int?): DataResult<List<Breed>>
 }
 
 class DogRepositoryImpl(private val dogApi: DogApi) : DogRepo {
 
-    override fun getDogBreed(page: Int): Flow<ViewState<List<Breed>>> = flow {
-        emit(ViewState.loading())
-        when (val freshData = getDogBreedFromServer(page)) {
-            is DataResult.Success -> {
-                emit(ViewState.success(freshData.body))
-            }
-            is DataResult.Failure -> {
-                emit(ViewState.error<List<Breed>>(freshData.throwable))
-            }
-        }
-    }.flowOn(Dispatchers.IO)
+
+    override fun filterData(query: String) {
+
+    }
 
     override suspend fun getDogBreedFromServer(page: Int?): DataResult<List<Breed>> =
         safeApiCall { dogApi.getDogBreeds(page = page) }

@@ -1,5 +1,6 @@
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -15,6 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val dogRepo: DogRepo) : ViewModel() {
 
+    val query = mutableStateOf("")
+
     fun fetchDogBreeds(): Flow<PagingData<Breed>> {
         return Pager(
             config = PagingConfig(pageSize = 10),
@@ -23,4 +26,10 @@ class MainViewModel @Inject constructor(private val dogRepo: DogRepo) : ViewMode
             BreedSource(dogRepo)
         }.flow.cachedIn(viewModelScope)
     }
+
+    fun onQueryChanged(query: String) {
+        this.query.value = query
+        dogRepo.filterData(query)
+    }
+
 }

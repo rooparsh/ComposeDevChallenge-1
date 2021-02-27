@@ -15,7 +15,13 @@ import com.rooparsh.data.network.model.Breed
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen(items: LazyPagingItems<Breed>, listState: LazyListState, listener: (Breed) -> Unit) {
+fun HomeScreen(
+    query: String,
+    items: LazyPagingItems<Breed>,
+    listState: LazyListState,
+    onItemClickListener: (Breed) -> Unit,
+    onQueryChanged: (String) -> Unit
+) {
 
     Scaffold(
         topBar = {
@@ -31,8 +37,9 @@ fun HomeScreen(items: LazyPagingItems<Breed>, listState: LazyListState, listener
             Column(
                 Modifier.padding(horizontal = 16.dp)
             ) {
+                SearchBar(query) { onQueryChanged(it) }
                 DogList(items, listState) {
-                    listener(it)
+                    onItemClickListener(it)
                 }
             }
         }
@@ -47,7 +54,6 @@ fun DogList(
     onItemClick: (Breed) -> Unit
 ) {
     LazyColumn(state = listState) {
-        item { Text(text = "Find a suitable 🐶!", style = MaterialTheme.typography.h4) }
         items(listItems) { pup ->
             pup?.let {
                 Box(Modifier.padding(8.dp)) {

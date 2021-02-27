@@ -46,7 +46,11 @@ fun DetailScreen(breed: Breed, modifier: Modifier = Modifier, onBackPressed: () 
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.primary
             )
-            Text(text = breed.name ?: "", style = MaterialTheme.typography.h3)
+            Text(
+                text = breed.name ?: "",
+                style = MaterialTheme.typography.h3,
+                color = MaterialTheme.colors.primary
+            )
             Spacer(Modifier.size(16.dp))
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                 Detail("Height", "${breed.height?.metric} m")
