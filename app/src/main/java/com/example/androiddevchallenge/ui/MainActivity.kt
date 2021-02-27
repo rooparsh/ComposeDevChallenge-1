@@ -21,7 +21,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -48,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
@@ -79,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                         navController.popBackStack()
                     }
                 }
-
             }
         }
     }
@@ -99,10 +101,4 @@ class MainActivity : AppCompatActivity() {
             DogApp()
         }
     }
-
-
 }
-
-
-
-
